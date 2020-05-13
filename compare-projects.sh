@@ -35,28 +35,27 @@ function compareProjects() {
 
     printf "Comparing ${LIGHT_BLUE}${1}${LIGHT_CYAN}${EDITORCONFIG_FILE}${NC} to ${LIGHT_BLUE}${2}${LIGHT_CYAN}${EDITORCONFIG_FILE}${NC} ..."
     compareFiles $PROJECTA$EDITORCONFIG_FILE $PROJECTB$EDITORCONFIG_FILE
-    
+
 #    printf "Comparing ${LIGHT_BLUE}${1}${LIGHT_CYAN}${CHECKSTYLE_FILE}${NC} to ${LIGHT_BLUE}${2}${LIGHT_CYAN}${CHECKSTYLE_FILE}${NC} ..."
 #    compareFiles $PROJECTA$CHECKSTYLE_FILE $PROJECTB$CHECKSTYLE_FILE
-    
+
 }
 
 function compareFiles() {
-    FILE1=$1 #$EDITORCONFIG_FILE
-    FILE2=$2 #$EDITORCONFIG_FILE
-    
+    FILE1=$1
+    FILE2=$2
+
     DIFFERENCE=$(diff $FILE1 $FILE2 2>&1)
     EXITCODE=$?
     if [ $EXITCODE == 0 ]; then
         printf "${GREEN} ✓ Identical ${NC}"
     elif [ $EXITCODE == 1 ]; then
-	diff $FILE1 $FILE2
-	printf "diffs"
+	    diff $FILE1 $FILE2
     elif [ $EXITCODE == 2 ]; then
 	printf "${RED}Missing file!${NC}"
     fi
     #echo "called with exit code: $?"
-    
+
     echo ""
 }
 
@@ -73,10 +72,10 @@ PROJECTS=()
 #Add project defaults dir at first place
 PROJECTS+=( $PROJECT_DEFAULTS_DIR )
 printf "Add project defaults dir: ${LIGHT_GREEN}${PROJECT_DEFAULTS_DIR}${NC}\n"
-	
+
 for PROJECT in $PROJECTSSTRING
 do
-    if [ $PROJECT != $PROJECT_DEFAULTS_DIR ]; then 
+    if [ $PROJECT != $PROJECT_DEFAULTS_DIR ]; then
 	#Project defaults dir already added
 	printf "Found project: ${LIGHT_GREEN}${PROJECT}${NC}\n"
 	PROJECTS+=( $PROJECT)
@@ -85,7 +84,7 @@ done
 
 
 
-PROJ_NUM=${#PROJECTS[@]} 
+PROJ_NUM=${#PROJECTS[@]}
 
 echo ""
 
