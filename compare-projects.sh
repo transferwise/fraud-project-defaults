@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CURR_DIR=$( pwd )
-BASE_DIR=/Users/zoltan.szopory/work/tw/
+BASE_DIR=../
 PROJECT_FILTER=fraud-.*
 EDITORCONFIG_FILE=.editorconfig
 CHECKSTYLE_FILE=checkstyle.xml
@@ -30,15 +30,9 @@ NC='\033[0m' # No Color
 
 
 function compareProjects() {
-#    printf "Comparing ${LIGHT_BLUE}${1}${LIGHT_CYAN}${EDITORCONFIG_FILE}${NC} to ${LIGHT_BLUE}${2}${LIGHT_CYAN}${EDITORCONFIG_FILE}${NC} ..."
-#
-#    #echo ""
-#    
     PROJECTA=$1
     PROJECTB=$2
-    #FILE1=$1$EDITORCONFIG_FILE
-    #FILE2=$2$EDITORCONFIG_FILE
-    
+
     printf "Comparing ${LIGHT_BLUE}${1}${LIGHT_CYAN}${EDITORCONFIG_FILE}${NC} to ${LIGHT_BLUE}${2}${LIGHT_CYAN}${EDITORCONFIG_FILE}${NC} ..."
     compareFiles $PROJECTA$EDITORCONFIG_FILE $PROJECTB$EDITORCONFIG_FILE
     
